@@ -1,65 +1,35 @@
-#first_page{
-  width: 200px;
-  height: 820px;
-  overflow: hidden;
-  background: url(https://www.walldevil.com/wallpapers/a89/money-success-fame-fortune-glory-waterslide.jpg);
+.container {
+        height: 100vh;
 }
-
-#background_ {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
+.row_upper{
+        height: 70%;
 }
-
-
-.carousel-caption {
-    top: 15%;
-    left:14%;
+.row_under{
+        height: 30%;
 }
-
-.navbar-brand{
-      font-family: 'Pacifico';
-      font-size: 2.0rem;
+.div__rowupper_left {
+        background-color: red;
+        height: 100%;
 }
-.nav-link{
-      font-size: 0.9rem;
-      font-weight: bold;
-      font-family: 'Montserrat', sans-serif;
+.div__rowupper_right {
+        background-color: blue;
+        height: 100%;
+        overflow: auto;
+        padding: 0px;
 }
-
-#Varela_1_1{
-        font-size: 1.9rem;
-        font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
-}
-#Varela_2{
-        font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
-}
-button {
-        font-weight: 200;
-        font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
-}
-
-#Montserrat{
-        font-weight: 400;
-        font-weight: bold;
-        font-family: 'Montserrat', sans-serif;
-}
-#clock{
-        font-weight: 400;
-        font-weight: bold;
-        font-size: 30px;
-}
-#footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
+.comments_and_actions {
         width: 100%;
+        background-color: coral;
 }
-
-img{
-  object-fit: cover;
+.div__rowunder_left {
+        background-color: yellow;
+        height: 100%;
+}
+.div__rowunder_mid {
+        background-color: green;
+        height: 100%;
+}
+.div__rowunder_right {
+        background-color: pink;
+        height: 100%;
 }

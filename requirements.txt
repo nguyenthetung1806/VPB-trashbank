@@ -20,5 +20,4 @@ gunicorn
 mongoengine
 passlib
 bson
-
-datetime
+flask_restful
