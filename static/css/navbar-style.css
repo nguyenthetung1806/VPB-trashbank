@@ -1,0 +1,90 @@
+body, html{
+    margin:0;
+    font-family: 'Lato', sans-serif;
+    font-size: 12pt;
+}
+.nav-main{
+    width: 100%;
+    background-color: #008445;
+    height:70px;
+    color:#fff
+}
+.nav-main .logo{
+    float: left;
+    height: 40px;
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    padding-right:30px;
+    font-size: 18pt;
+    line-height: 40px;
+}
+
+.nav-main > ul{
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style-type: none;
+}
+
+.nav-main > ul > li{
+    float:left;
+}
+
+.nav-item{
+    display: inline-block;
+    padding: 15px 20px;
+    height: 40px;
+    line-height: 40px;
+    color:#fff;
+    text-decoration: none;
+}
+
+.nav-item:hover{
+    background-color: #01974e;
+}
+
+.nav-item:focus{
+    background-color: #01974e;   
+}
+
+.nav-item:focus ~ .nav-content{
+    max-height: 400px;
+    -webkit-transition: max-height 0.4s ease-in;
+    -moz-transition: max-height 0.4s ease-in;
+    transition: max-height 0.4s ease-in;
+}
+
+.nav-content{
+    position: absolute;
+    top: 70px;
+    display: block;
+    /* overflow: hidden; */
+    background-color: #01974e;
+    max-height: 0%;
+    width: 200px;
+}
+.nav-content a{
+    color: white;
+    text-decoration: none;
+}
+
+.nav-content a:hover{
+    font-weight: bold;
+}
+
+.nav-sub{
+    padding: 5px 15px;   
+}
+
+.nav-sub ul{
+    padding:0;
+    margin:0;
+    }
+
+.nav-sub ul li a{
+    display: inline-block;
+    padding: 5px 0px;
+}
+
+

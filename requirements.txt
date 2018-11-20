@@ -15,9 +15,10 @@ mock
 # ----------------------
 
 gevent
-
+io
 gunicorn
 mongoengine
 passlib
 bson
 flask_restful
+pandas

@@ -1,35 +1,67 @@
 $(document).ready(function () {
     console.log('hello')
+    let sheetsRendered
 
-    let page_name = $("#page_name").text();
-    function getArray(renderArray) {
-        $.ajax({
-            url: `/api/Array/${ page_name }`,
-            type: 'get',
-            success: function (response) {
-                let array = JSON.parse(response);
-                renderArray(array);
-            },
-            error: function (response) {
-                console.log('Error', response);
-            }
-        });
-    }
-    function getComment(renderComments) {
-        $.ajax({
-            url: `/api/Comment/${ page_name }`,
-            type: 'get',
-            success: function (response) {
-                let comments = JSON.parse(response);
-                renderComments(comments)
-            },
-            error: function (response) {
-                console.log('Error', response);
-            }
-        });
+    axios.get('/api/Date')
+        .then(response => {
+            let group_date = []
+            response.data.forEach(element => {
+                group_date.push(element.date)
+            });
+            $('select#date-selection').append(
+                `${group_date.map(e => `<option> ${e} </option>`).join("")}`)
+            return $(`select#date-selection option:selected`).val()
+        })
+        .then(response => {
+            axios.get(`/api/Sheet-Date/${$("#group").text()}/${$("#page_name").text()}/${response}`)
+                .then(response => {
+                    let hidden
+                    response.data.forEach(element => {
+                        console.log(element)
+                        $('select#sheet-selection').append(
+                            ` ${`<option>${element.sheet}</option>`}`)
+                        response.data.indexOf(element) === 0 ? hidden = 0 : hidden = 1
+                        console.log(response.data.indexOf(element))
+                        renderArray(element, hidden)
+                    })
+                    return $(`select#sheet-selection option:selected`).val()
+                })
+                .then(response => {
+                    getComment()
+                    console.log(response)
+                })
+        })
+        .catch(err => console.log(err))
+
+    $(`select#sheet-selection`).on('change', function () {
+        $(`#table-array-${$(`select#sheet-selection option:not(:selected)`).val()}`).addClass("hidden")
+        console.log(`#table-array-${$(`select#sheet-selection option:selected`).val()}`)
+        $(`#table-array-${$(`select#sheet-selection option:selected`).val()}`).removeClass("hidden")
+    })
+
+
+
+    function getComment() {
+        axios.get(`/api/Comment/${$("#group").text()}/${$("#page_name").text()}/${$(`select#date-selection option:selected`).val()}/${$(`select#sheet-selection option:selected`).val()}`)
+            .then(response => {
+                console.log(response)
+                response.data.forEach(element => {
+                    console.log(element)
+                    $('#comments_and_actions').append(`
+                    <div class="single-data-piece">
+                        <div class="user"> Posted by: ${element.username} </div>
+                        <div>Comment:</div>
+                        <div class="comment"> ${element.comment} </div>
+                        ${element.action ? "<div>Action:</div>" : ""}
+                        <div class="action"> ${element.action ? element.action : ""} </div>
+                    </div>
+                `)
+                });
+            })
+            .catch(err => console.log('Error', err))
     }
 
-    function renderArray(array) {
+    function renderArray(array, hidden) {
         let thead = array.array[0].map(e => `<th> ${e} </th>`);
         let tbody = []
         for (let i = 1; i < array.array.length; i++) {
@@ -38,7 +70,7 @@ $(document).ready(function () {
         }
         tbody = tbody.map(e => `<tr class="${array.page} ${tbody.indexOf(e)}"> ${e} </tr>`)
         $('#array').append(`
-            <table class="table" id="${array.page}">
+            <table class="table ${(hidden === 1) ? "hidden" : ""}" id="table-array-${array.sheet}">
                 <thead>
                 <tr>
                     ${ thead.join("")}
@@ -51,61 +83,42 @@ $(document).ready(function () {
         `)
     }
 
-    function renderComments(comments) {
-        comments.forEach(element => {
-            $('#comments_and_actions').append(`
-            <div class="single-data-piece">
-                <div class="user"> Posted by: ${element.username} </div>
-                <div>Comment:</div>
-                <div class="comment"> ${element.comment} </div>
-                ${element.action ? "<div>Action:</div>" : ""}
-                <div class="action"> ${element.action ? element.action : ""} </div>
-            </div>
-        `)
-        });
-    }
-
     function createComment() {
-        $.ajax({
-            url: `/api/Comment`,
-            type: 'post',
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify({
+        axios.post(`/api/Comment`,
+            {
+                "group": $("#group").text(),
                 "page": $("#page_name").text(),
+                "date": $(`select#date-selection option:selected`).val(),
+                "sheet": $(`select#sheet-selection option:selected`).val(),
                 "username": $("#input-username").val(),
                 "comment": $("#input-comment").val(),
-                "action": $("#input-comment").val(),
-            }),
-            success: function (response) {
+                "action": $("#input-action").val(),
+            })
+            .then(response => {
+                console.log(response)
                 $("#input-username").empty();
                 $("#input-comment").empty();
                 $("#input-comment").empty();
                 $('#comments_and_actions').append(`
                     <div class="single-data-piece">
-                        <div class="user"> Posted by: ${response.username} </div>
+                        <div class="user"> Posted by: ${response.data.username} </div>
                         <div>Comment:</div>
-                        <div class="comment"> ${response.comment} </div>
-                        ${response.action ? "<div>Action:</div>" : ""}
-                        <div class="action"> ${response.action ? response.action : ""} </div>
+                        <div class="comment"> ${response.data.comment} </div>
+                        ${response.data.action ? "<div>Action:</div>" : ""}
+                        <div class="action"> ${response.data.action ? response.data.action : ""} </div>
                     </div>
                  `)
-                $('#scroll').scrollTo({ bottom: '0px', left: '100%' }, 800);
-            },
-            error: function (response) {
-                console.log('Error', response);
-            }
-        });
+            })
+            .catch(err => console.log('Error', err))
+
     }
 
-    getArray(renderArray);
-    getComment(renderComments);
+    getComment(createComment);
     $('#summit-comment').click(function () {
         createComment()
         $("#scroll").animate({ scrollTop: $("#comments_and_actions").height() }, "slow");
     })
 
 
-
-
 })
+

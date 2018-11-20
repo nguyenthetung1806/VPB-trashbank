@@ -17,18 +17,38 @@
 
 <body>
 
+
     <div class="container">
-        <form>
+        <form id="form-submit">
             <div class="form-group">
-                <label>Group Name:</label>
-                <input id="input-group" type="text" class="form-control">
+                <label for="group-selection">Select Group</label>
+                <select class="form-control" id="group-selection">
+                </select>
             </div>
             <div class="form-group">
-                <label>Page Name:</label>
-                <input id="input-page" type="text" class="form-control">
+                <label for="page-selection">Select Page</label>
+                <select class="form-control" id="page-selection">
+                </select>
             </div>
-            <button id="button-create-page" type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="date-selection">Date Selection</label>
+                <select class="form-control" id="date-selection">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sheet Name:</label>
+                <input id="input-sheet" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Excel:</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+            <button id="button-create-sheet" type="submit" class="btn btn-primary">Submit</button>
         </form>
+
     </div>
 
 
@@ -39,7 +59,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="../static/js/javascript_createpage.js"></script>
+    <script type="text/javascript" src="../static/js/javascript_createsheet.js"></script>
 </body>
 
 

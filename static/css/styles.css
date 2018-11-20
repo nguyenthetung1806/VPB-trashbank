@@ -33,3 +33,10 @@
         background-color: pink;
         height: 100%;
 }
+
+.table {
+        background-color: aqua
+}
+.hidden {
+        display: none;
+}

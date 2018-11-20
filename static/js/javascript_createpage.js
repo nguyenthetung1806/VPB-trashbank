@@ -9,39 +9,46 @@ $(document).ready(function () {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify({
-                "page": $("#input-page").val(),
+                "group": $("#input-group").val(),
+                "page": JSON.parse($("#input-page").val()),
             }),
             success: function (response) {
                 console.log(response)
-                window.location.replace(`/page/${response.page}`);
+                alert("success")
             },
             error: function (response) {
                 console.log('Error', response);
             }
         });
     }
-    function createArray(createPage) {
+
+
+    function createDate() {
         $.ajax({
-            url: `/api/Array`,
+            url: `/api/Date`,
             type: 'post',
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify({
-                "page": $("#input-page").val(),
-                "array": JSON.parse($("#input-array").val())
+                "date": $("#input-date").val()
             }),
             success: function (response) {
                 console.log(response)
-                createPage();
+                alert("success")
             },
             error: function (response) {
                 console.log('Error', response);
             }
         });
     }
+    $('#button-create-date').click(function (event) {
+        event.preventDefault();
+        createDate();
+    })
+
     $('#button-create-page').click(function (event) {
         event.preventDefault();
-        createArray(createPage);
+        createPage();
     })
 
 

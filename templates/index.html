@@ -11,25 +11,18 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/navbar-style.css">
     <link rel="stylesheet" href="../static/css/styles.css">
+
+
     <title></title>
 </head>
 
 <body>
 
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label>Group Name:</label>
-                <input id="input-group" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Page Name:</label>
-                <input id="input-page" type="text" class="form-control">
-            </div>
-            <button id="button-create-page" type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    {% include 'navbar-template.html' %}
+
 
 
     <!-- Optional JavaScript -->
@@ -40,6 +33,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="../static/js/javascript_createpage.js"></script>
+    <script type="text/javascript" src="../static/js/javascript.js"></script>
 </body>
 
 
