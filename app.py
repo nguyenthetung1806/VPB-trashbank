@@ -111,7 +111,7 @@ api.add_resource(Comment_Get, '/api/Comment/<group>/<page>/<date>/<sheet>')
 
 class Sheet_Create(Resource):
     def post(self):
-        array = request.files['array']
+        array = request.files['data']
         array = BytesIO(array.read())
         df_array = pd.read_excel(array)
         df_array = df_array.round(2)

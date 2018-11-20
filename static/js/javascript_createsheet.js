@@ -53,20 +53,12 @@ $(document).ready(function () {
 
 
     function createSheet(formData) {
-        $.ajax({
-            url: `/api/Array`,
-            type: 'post',
-            data: JSON.stringify(formData),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (response) {
-                console.log(response)
-            },
-            error: function (response) {
-                console.log('Error', response);
-            }
-        });
+        axios.post(`/api/Sheet`, formData, { responseType: 'arraybuffer' }, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then(response => {
+                console.log(response.data);
+                alert('success')
+            })
+            .catch(err => console.log(err));
     }
 
     $('#button-create-sheet').click(function (event) {
@@ -77,7 +69,6 @@ $(document).ready(function () {
         formData.append("date", $("#input-date").val());
         formData.append("sheet", $("#input-sheet").val());
         formData.append("data", $("#customFile")[0].files[0]);
-        console.log($("select#group-selection option:selected").val())
         createSheet(formData)
     })
 
