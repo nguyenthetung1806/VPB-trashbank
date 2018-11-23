@@ -61,6 +61,10 @@ $(document).ready(function () {
             .catch(err => console.log(err));
     }
 
+    $("#customFile").change(function () {
+        $("#input-sheet").val($('input[type=file]').val().replace(/C:\\fakepath\\/i, '').split('.').slice(0, -1).join('.'))
+    })
+
     $('#button-create-sheet').click(function (event) {
         event.preventDefault();
         var formData = new FormData();

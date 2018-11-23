@@ -128,6 +128,7 @@ $(document).ready(function () {
         if (event.which == 13) {
             createComment()
             $('#input-comment-action').val("");
+            $('#input-comment-action').focus(""); 
             $("#scroll").animate({ scrollTop: $("#comments_and_actions").height() }, "slow");
         }
     })
