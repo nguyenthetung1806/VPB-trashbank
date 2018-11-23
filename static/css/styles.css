@@ -14,12 +14,12 @@
 .div__rowupper_right {
         background-color: blue;
         height: 100%;
-        overflow: auto;
         padding: 0px;
 }
 .comments_and_actions {
         width: 100%;
-        background-color: coral;
+        height: 100%;
+        /* background-color: coral; */
 }
 .div__rowunder_left {
         background-color: yellow;
@@ -39,4 +39,15 @@
 }
 .hidden {
         display: none;
+}
+
+.comments {
+        background-color: aqua;
+        height: 50%;
+        overflow: auto;
+}
+.actions {
+        background-color:pink;
+        height: 50%;
+        overflow: auto;
 }

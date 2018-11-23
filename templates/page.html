@@ -44,39 +44,31 @@
     <div class="row row_upper">
 
       <div class=" col-9 div__rowupper_left">
-
         <div id="array"></div>
       </div>
       <div id="scroll" class="col div__rowupper_right">
         <div id="comments_and_actions" class="comments_and_actions">
-
-
+          <div id="div-comments" class="comments"></div>
+          <div id="div-actions" class="actions"></div>
         </div>
       </div>
     </div>
     <div class="row row_under">
-      <div class=" col-5 div__rowunder_left">
-        <div class="form-group">
-          <label>Comment</label>
-          <textarea class="form-control" id="input-comment" rows="3"></textarea>
-        </div>
-      </div>
-      <div class=" col-5 div__rowunder_mid">
-        <div class="form-group">
-          <label>Action</label>
-          <textarea class="form-control" id="input-action" rows="3"></textarea>
-        </div>
-      </div>
-      <div class="col div__rowunder_right">
+      <div class=" col div__rowunder_mid">
         <div class="row">
-          <div class="form-group">
-            <label>Username:</label>
-            <input id="input-username" type="text">
+          <div class="col form-group">
+            <select class="form-control" id="comment-action-selection">
+              <option>Post Comment</option>
+              <option>Post Action</option>
+            </select>
+            <div>
+              <textarea class="col" id="input-comment-action" rows="3"></textarea>
+            </div>
           </div>
         </div>
-        <button id="summit-comment" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
+  </div>
 
   </div>
 

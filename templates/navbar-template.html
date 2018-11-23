@@ -5,117 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOM Report</title>
-    <link rel="stylesheet" href="../static/css/navbar-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename = './css/navbar-style.css') }}">
 </head>
 
 <body>
     <!-- Creating navigation bar-->
-    <nav class="nav-main">
-        <a href="./s"></a>
-        <div class="logo">VPBank</div>
-        <ul>
-            <li>
-                <a href="#" class="nav-item">RB Overview</a>
-                <div class="nav-content">
-                    <div class="nav-sub">
-                        <ul>
-                            <li>
-                                <a href="#">P&L and BS</a>
-                            </li>
-                            <li>
-                                <a href="#">This Month Update</a>
-                            </li>
-                            <li>
-                                <a href="#">Forecasting</a>
-                            </li>
-                            <li>
-                                <a href="#">Headcount Movement</a>
-                            </li>
-                            <li>
-                                <a href="#">Productivity</a>
-                            </li>
-                            <li>
-                                <a href="#">Product Efficiency</a>
-                            </li>
-                            <li>
-                                <a href="#">Other Indicators</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="#" class="nav-item">Secured Loan</a>
-                <div class="nav-content">
-                    <div class="nav-sub">
-                        <ul>
-                            <li>
-                                <a href="#">Auto Loan</a>
-                            </li>
-                            <li>
-                                <a href="#">Home Loan</a>
-                            </li>
-                            <li>
-                                <a href="#">Business Loan</a>
-                            </li>
-                            <li>
-                                <a href="#">Consumption Loan</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="#" class="nav-item">Unsecured Loan</a>
-                <div class="nav-content">
-                    <div class="nav-sub">
-                        <ul>
-                            <li>
-                                <a href="#">UPL</a>
-                            </li>
-                            <li>
-                                <a href="#">Credit Card</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="#" class="nav-item">Deposit</a>
-                <div class="nav-content">
-                    <div class="nav-sub">
-                        <ul>
-                            <li>
-                                <a href="#">Term Deposit</a>
-                            </li>
-                            <li>
-                                <a href="/Deposit/Casa">Casa</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="#" class="nav-item">Affluent Banking</a>
-                <div class="nav-content">
-                    <div class="nav-sub">
-                        <ul>
-                            <li>
-                                <a href="#">P&L and BS</a>
-                            </li>
-                            <li>
-                                <a href="#">Customer Report</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-
-
-
-
+    <div class="nav-main">
+        <div class="logo"><img src="https://uphinhnhanh.com/images/2018/11/21/VPBank.png" alt="VPBank.png" border="0" /></div>
+        <div class="nav-group">
+            <button class="nav-page">RB Overview 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="nav-content">
+              <a href="/RB Overview/P&L and BS">P&L and BS</a>
+              <a href="/RB Overview/This Month Update">This Month Update</a>
+              <a href="/RB Overview/Forecasting">Forecasting</a>
+              <a href="/RB Overview/Headcount Movement">Headcount Movement</a>
+              <a href="/RB Overview/Productivity">Productivity</a>
+              <a href="/RB Overview/Product Efficiency">Product Efficiency</a>
+              <a href="/RB Overview/Other Indicators">Other Indicators</a>
+            </div>
+        </div>
+        <div class="nav-group">
+            <button class="nav-page">Secured Loan
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="nav-content">
+              <a href="Secured Loan/Auto Loan">Auto Loan</a>
+              <a href="Secured Loan/Home Loan">Home Loan</a>
+              <a href="Secured Loan/Business Loan">Business Loan</a>
+              <a href="Secured Loan/Consumption Loan">Consumption Loan</a>
+            </div>
+        </div>
+        <div class="nav-group">
+            <button class="nav-page">Unsecured Loan
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="nav-content">
+              <a href="Unsecured Loan/UPL">UPL</a>
+              <a href="Unsecured Loan/Credit Card">Credit Card</a>
+            </div>
+        </div>
+        <div class="nav-group">
+            <button class="nav-page">Deposit
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="nav-content">
+              <a href="Deposit/Term Deposit">Term Deposit</a>
+              <a href="Deposit/Casa">Casa</a>
+            </div>
+        </div>
+        <div class="nav-group">
+            <button class="nav-page">Affluent Banking
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="nav-content">
+              <a href="Affluent Banking/P&L and BS">P&L and BS</a>
+              <a href="Affluent Banking/Customer report">Customer report</a>
+            </div>
+        </div>
+    </div>   
+    <!-- end of navigation bar--> 
 </body>
 
 </html>

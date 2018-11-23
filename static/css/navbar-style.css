@@ -1,90 +1,84 @@
 body, html{
     margin:0;
     font-family: 'Lato', sans-serif;
-    font-size: 12pt;
 }
 .nav-main{
     width: 100%;
     background-color: #008445;
     height:70px;
-    color:#fff
+    color: black;
+    overflow:hidden;
 }
-.nav-main .logo{
+.nav-main .logo img{
     float: left;
-    height: 40px;
+    height: 50px;
     padding-top: 15px;
-    padding-left: 30px;
-    padding-bottom: 15px;
-    padding-right:30px;
-    font-size: 18pt;
-    line-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.nav-main > ul{
-    margin: 0;
-    padding: 0;
+.nav-main a {
     float: left;
-    list-style-type: none;
-}
-
-.nav-main > ul > li{
-    float:left;
-}
-
-.nav-item{
-    display: inline-block;
-    padding: 15px 20px;
-    height: 40px;
-    line-height: 40px;
-    color:#fff;
-    text-decoration: none;
-}
-
-.nav-item:hover{
-    background-color: #01974e;
-}
-
-.nav-item:focus{
-    background-color: #01974e;   
-}
-
-.nav-item:focus ~ .nav-content{
-    max-height: 400px;
-    -webkit-transition: max-height 0.4s ease-in;
-    -moz-transition: max-height 0.4s ease-in;
-    transition: max-height 0.4s ease-in;
-}
-
-.nav-content{
-    position: absolute;
-    top: 70px;
-    display: block;
-    /* overflow: hidden; */
-    background-color: #01974e;
-    max-height: 0%;
-    width: 200px;
-}
-.nav-content a{
+    font-size: 16px;
     color: white;
+    text-align: center;
+    padding: 15px 20px;
     text-decoration: none;
 }
 
-.nav-content a:hover{
-    font-weight: bold;
+.nav-group {
+    float: left;
+    overflow: hidden;
+}
+  
+.nav-group .nav-page {
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px; 
+    border: none;
+    outline: none;
+    color: white;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 55px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
 }
 
-.nav-sub{
-    padding: 5px 15px;   
+.nav-group:hover{
+    background-color: #01974e;
 }
 
-.nav-sub ul{
-    padding:0;
-    margin:0;
-    }
+.nav-main a:hover, .nav-group:hover .navpage {
+    background-color: #01974e;
+  }
 
-.nav-sub ul li a{
-    display: inline-block;
-    padding: 5px 0px;
+.nav-content {
+    display: none;
+    position: absolute;
+    background-color: #008445;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
+.nav-content a {
+    float: none;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
 
+.nav-content a:hover {
+    background-color: #01974e;
+    font-weight: 900;
+}
+
+.nav-group:hover .nav-content {
+    display: block;
+  }
+  

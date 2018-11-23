@@ -8,6 +8,11 @@ from mongoengine import *
 from urllib.parse import parse_qs, urlparse
 import pandas as pd
 from io import BytesIO
+# API
+from api_date import Date_Main, Date_Create, Date_GetAll
+from api_page import Page_Main, Page_Create, Page_GetAll
+from api_sheet import Sheet_Main, Sheet_Create, Sheet_Get, Sheet_Get_WithDate
+from api_comment import Comment_Main, Comment_Create, Comment_Get
 
 app = Flask(__name__)
 mlab.connect()
@@ -52,154 +57,30 @@ def create_sheet():
     return render_template('create-sheet.html')
 
 
-class Date_Main(Document):
-    date = StringField()
-
-
-class Page_Main(Document):
-    group = StringField()
-    page = ListField()
-
-
-class Comment_Main(Document):
-    group = StringField()
-    page = StringField()
-    sheet = StringField()
-    date = StringField()
-    username = StringField()
-    comment = StringField()
-    action = StringField()
-
-
-class Sheet_Main(Document):
-    group = StringField()
-    page = StringField()
-    sheet = StringField()
-    date = StringField()
-    array = ListField()
-
-
-class Comment_Create(Resource):
-    def post(self):
-        data = json.loads(request.data.decode('utf-8'))
-        print(data)
-        comment = Comment_Main(group=data['group'],
-                               page=data['page'],
-                               sheet=data['sheet'],
-                               date=data['date'],
-                               username=data['username'],
-                               comment=data['comment'],
-                               action=data['action'])
-        comment.save()
-        comment = comment.to_json()
-        return Response(comment)
+@app.route('/create-template')
+def create_template():
+    return render_template('create-tempalate.html')
 
 
 api.add_resource(Comment_Create, '/api/Comment')
-
-
-class Comment_Get(Resource):
-    def get(self, group, page, date, sheet):
-        comment = Comment_Main.objects(group = group, page=page, date = date, sheet = sheet)
-        comment = comment[1: 5]
-        comment = comment.to_json()
-        return Response(comment)
-
-
-api.add_resource(Comment_Get, '/api/Comment/<group>/<page>/<date>/<sheet>')
-
-
-class Sheet_Create(Resource):
-    def post(self):
-        array = request.files['data']
-        array = BytesIO(array.read())
-        df_array = pd.read_excel(array)
-        df_array = df_array.round(2)
-        df_array = df_array.fillna("")
-        data_dict = dict(request.form)
-        group = data_dict['group'][0]
-        page = data_dict['page'][0]
-        date = data_dict['date'][0]
-        sheet = data_dict['sheet'][0]
-        df_array = df_array.values.T.tolist()
-        result = Sheet_Main(group=group,
-                            page=page,
-                            sheet=sheet,
-                            date=date,
-                            array=df_array
-                            )
-        result.save()
-        result = result.to_json()
-        return data_dict
+api.add_resource(Comment_Get, '/api/Comment/<group>/<page>/<date>')
 
 
 api.add_resource(Sheet_Create, '/api/Sheet')
-
-
-class Sheet_Get(Resource):
-    def get(self, group, page):
-        sheet = Sheet_Main.objects(group=group, page=page)
-        sheet = sheet.to_json()
-        return Response(sheet)
-
-
 api.add_resource(Sheet_Get, '/api/Sheet/<group>/<page>')
-
-
-class Sheet_Get_WithDate(Resource):
-    def get(self, group, page, date):
-        sheet = Sheet_Main.objects(group=group, page=page, date=date)
-        sheet = sheet.to_json()
-        return Response(sheet)
-
-
 api.add_resource(Sheet_Get_WithDate, '/api/Sheet-Date/<group>/<page>/<date>')
 
 
-class Page_Create(Resource):
-    def post(self):
-        data = json.loads(request.data.decode('utf-8'))
-        data = Page_Main(group=data['group'],
-                         page=data['page'],
-                         )
-        data.save()
-        data = data.to_json()
-        return Response(data)
-
-
 api.add_resource(Page_Create, '/api/Page')
-
-
-class Page_GetAll(Resource):
-    def get(self):
-        page = Page_Main.objects
-        page = page.to_json()
-        return Response(page)
-
-
 api.add_resource(Page_GetAll, '/api/Page')
 
 
-class Date_GetAll(Resource):
-    def get(self):
-        date = Date_Main.objects
-        date = date.to_json()
-        return Response(date)
-
-
 api.add_resource(Date_GetAll, '/api/Date')
-
-
-class Date_Create(Resource):
-    def post(self):
-        data = json.loads(request.data.decode('utf-8'))
-        date = Date_Main(date=data['date'])
-        date.save()
-        date = date.to_json()
-        return Response(date)
-
-
 api.add_resource(Date_Create, '/api/Date')
+
+
+class Template_Main(Document):
+    template = ListField()
 
 
 if __name__ == '__main__':
