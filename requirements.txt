@@ -21,3 +21,4 @@ passlib
 bson
 flask_restful
 pandas
+xlrd

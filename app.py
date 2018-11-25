@@ -12,7 +12,7 @@ from io import BytesIO
 from api_date import Date_Main, Date_Create, Date_GetAll
 from api_page import Page_Main, Page_Create, Page_GetAll
 from api_sheet import Sheet_Main, Sheet_Create, Sheet_Get, Sheet_Get_WithDate
-from api_comment import Comment_Main, Comment_Create, Comment_Get
+from api_comment import Comment_Main, Comment_Create, Comment_Get, Comment_Put, Comment_Delete
 
 app = Flask(__name__)
 mlab.connect()
@@ -64,6 +64,8 @@ def create_template():
 
 api.add_resource(Comment_Create, '/api/Comment')
 api.add_resource(Comment_Get, '/api/Comment/<group>/<page>/<date>')
+api.add_resource(Comment_Put, '/api/Comment/<cmtact>/<id>')
+api.add_resource(Comment_Delete, '/api/Comment/<id>')
 
 
 api.add_resource(Sheet_Create, '/api/Sheet')

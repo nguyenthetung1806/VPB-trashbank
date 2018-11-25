@@ -63,16 +63,18 @@ $(document).ready(function () {
 
     $("#customFile").change(function () {
         $("#input-sheet").val($('input[type=file]').val().replace(/C:\\fakepath\\/i, '').split('.').slice(0, -1).join('.'))
+        $("#input-label").text($('input[type=file]').val().replace(/C:\\fakepath\\/i, ''))
     })
 
     $('#button-create-sheet').click(function (event) {
         event.preventDefault();
         var formData = new FormData();
         formData.append("group", $("select#group-selection option:selected").val());
-        formData.append("page", $("select#sheet-selection option:selected").val());
-        formData.append("date", $("#input-date").val());
+        formData.append("page", $("select#page-selection option:selected").val());
+        formData.append("date", $("select#date-selection option:selected").val());
         formData.append("sheet", $("#input-sheet").val());
         formData.append("data", $("#customFile")[0].files[0]);
+        console.log(formData)
         createSheet(formData)
     })
 

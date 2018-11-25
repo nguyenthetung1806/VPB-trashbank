@@ -21,12 +21,12 @@ class Sheet_Create(Resource):
         df_array = pd.read_excel(array)
         df_array = df_array.round(2)
         df_array = df_array.fillna("")
+        df_array = df_array.T.reset_index().values.T.tolist()
         data_dict = dict(request.form)
         group = data_dict['group'][0]
         page = data_dict['page'][0]
         date = data_dict['date'][0]
         sheet = data_dict['sheet'][0]
-        df_array = df_array.values.T.tolist()
         result = Sheet_Main(group=group,
                             page=page,
                             sheet=sheet,
@@ -35,6 +35,8 @@ class Sheet_Create(Resource):
                             )
         result.save()
         result = result.to_json()
+        print(result)
+
         return data_dict
 
 
