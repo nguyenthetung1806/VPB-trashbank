@@ -1,6 +1,5 @@
 $(document).ready(function () {
     console.log('hello')
-
     axios.get('/api/Date')
         .then(response => {
             let group_date = []
@@ -8,27 +7,23 @@ $(document).ready(function () {
                 group_date.push(element.date)
             });
             $('select#date-selection').append(
-                `${group_date.map(e => `<option> ${e} </option>`).join("")}`)
+                `${group_date.map(e => `<option>${e}</option>`).join("")}`)
             return $(`select#date-selection option:selected`).val()
         })
+        .then(response => axios.get(`/api/Sheet-Date/${$("#group").text()}/${$("#page_name").text()}/${response}`))
         .then(response => {
-            axios.get(`/api/Sheet-Date/${$("#group").text()}/${$("#page_name").text()}/${response}`)
-                .then(response => {
-                    let hidden
-                    response.data.forEach(element => {
-                        console.log(element)
-                        $('select#sheet-selection').append(
-                            ` ${`<option>${element.sheet}</option>`}`)
-                        response.data.indexOf(element) === 0 ? hidden = 0 : hidden = 1
-                        console.log(response.data.indexOf(element))
-                        renderArray(element, hidden)
-                    })
-                    return $(`select#sheet-selection option:selected`).val()
-                })
-                .then(response => {
-                    getComment()
-                    console.log(response)
-                })
+            let hidden
+            response.data.forEach(element => {
+                $('select#sheet-selection').append(
+                    ` ${`<option>${element.sheet}</option>`}`)
+                response.data.indexOf(element) === 0 ? hidden = 0 : hidden = 1
+                renderArray(element, hidden)
+            })
+            return $(`select#sheet-selection option:selected`).val()
+        })
+        .then(response => {
+            getComment()
+            console.log(response)
         })
         .catch(err => console.log(err))
 
@@ -98,14 +93,14 @@ $(document).ready(function () {
         `)
     }
 
-    function createComment() {
+    function createComment(content) {
         let comment, action
         if ($(`select#comment-action-selection option:selected`).val() == "Post Comment") {
-            comment = $("#input-comment-action").val()
+            comment = content
             action = ""
         } else if ($(`select#comment-action-selection option:selected`).val() == "Post Action") {
             comment = ""
-            action = $("#input-comment-action").val()
+            action = content
         }
         axios.post(`/api/Comment`,
             {
@@ -124,14 +119,13 @@ $(document).ready(function () {
             .catch(err => console.log('Error', err))
     }
 
-    $('#input-comment-action').keypress(function (event) {
-        if (event.which == 13) {
-            createComment()
-            $('#input-comment-action').val("");
-            $('#input-comment-action').focus(""); 
-            $("#scroll").animate({ scrollTop: $("#comments_and_actions").height() }, "slow");
-        }
+    $(document).on('click', '#post-content', function () {
+        let content = $('.fr-element.fr-view').html()
+        console.log(content)
+        console.log('create')
+        createComment(content)
     })
+
 
 
     function renderComment(element) {

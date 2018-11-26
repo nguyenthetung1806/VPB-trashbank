@@ -11,6 +11,20 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
+
+
+
+  <!-- Include external CSS. -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+
+  <!-- Include Editor style. -->
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
   <link rel="stylesheet" href="{{ url_for('static', filename = './css/styles.css') }}">
   <title></title>
 </head>
@@ -48,7 +62,7 @@
         <div id="array"></div>
       </div>
       <div id="scroll" class="col div__rowupper_right">
-        <div id="comments_and_actions" class="comments_and_actions">
+        <div id="comments_and_actions" class="comments_and_actions fr-view">
           <div class="comments">
             <div class="col"> Comment:</div>
             <div id="div-comments"></div>
@@ -70,6 +84,7 @@
             </select>
             <div>
               <textarea class="col" id="input-comment-action" rows="3"></textarea>
+              <button class="btn btn-block" id='post-content'>Post</button>
             </div>
           </div>
         </div>
@@ -90,6 +105,21 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+  <!-- Include external JS libs. -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+  <!-- Include Editor JS files. -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.1/js/froala_editor.pkgd.min.js"></script>
+
+  <!-- Initialize the editor. -->
+  <script> $(function () { $('textarea').froalaEditor() }); </script>
+
+
+
   <script type="text/javascript" src="{{ url_for('static', filename = './js/javascript.js') }}"></script>
 </body>
 
