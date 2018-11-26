@@ -27,17 +27,17 @@ class Sheet_Create(Resource):
         page = data_dict['page'][0]
         date = data_dict['date'][0]
         sheet = data_dict['sheet'][0]
-        result = Sheet_Main(group=group,
-                            page=page,
-                            sheet=sheet,
-                            date=date,
-                            array=df_array
-                            )
-        result.save()
-        result = result.to_json()
-        print(result)
-
-        return data_dict
+        if not Sheet_Main.objects(group=group, page=page, sheet=sheet, date=date):
+            result = Sheet_Main(group=group,
+                                page=page,
+                                sheet=sheet,
+                                date=date,
+                                array=df_array
+                                )
+            result.save()
+        else: 
+            raise ValueError
+        return Response(result)
 
 
 class Sheet_Get(Resource):

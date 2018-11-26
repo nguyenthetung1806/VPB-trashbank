@@ -36,19 +36,15 @@ class Comment_Get(Resource):
 
 
 class Comment_Delete(Resource):
-    def get(self, _id):
+    def delete(self,_id):
         comment = Comment_Main.objects.with_id(_id)
         comment.delete()
         return Response('deleted')
 
 
 class Comment_Put(Resource):
-    def get(self, cmtact, _id):
+    def put(self, _id):
         comment = Comment_Main.objects.with_id(_id)
         data = json.loads(request.data.decode('utf-8'))
-        if cmtact == "comment":
-            comment.update(comment=data['cmtact'])
-        elif cmtact == "action":
-            comment.update(action=data['cmtact'])
-
+        comment.update(comment=data['comment'], action=data['action'])
         return Response(comment)

@@ -11,24 +11,43 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
-
-
+    <link rel="stylesheet" href="{{ url_for('static', filename = './css/styles.css') }}">
     <title></title>
 </head>
 
 <body>
 
+
     <div class="container">
-        <div class="row admin-option"><a href="/admin/create-page">Create Group & Page </a></div>
-        <div class="row admin-option"><a href="/admin/create-date">Create Date </a></div>
-        <div class="row admin-option"><a href="/admin/create-sheet">Create Sheet </a></div>
-        <div class="row admin-option"><a href="/admin/update-delete-comment">Update/Delete Comment </a></div>
+        <form id="form-submit">
+            <div class="form-group">
+                <label for="group-selection">Select Group</label>
+                <select class="form-control" id="group-selection">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="page-selection">Select Page</label>
+                <select class="form-control" id="page-selection">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date-selection">Date Selection</label>
+                <select class="form-control" id="date-selection">
+                </select>
+            </div>
+        </form>
+        <div id='div-comments'>
+            <div id='div-comments-comments'>
+
+
+
+            </div>
+            <div id='div-comments-actions'></div>
+
+
+        </div>
+
     </div>
-
-
-
 
 
     <!-- Optional JavaScript -->
@@ -38,7 +57,8 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="../static/js/javascript_comment.js"></script>
 </body>
 
 

@@ -52,20 +52,19 @@ def page(group, page_name):
     return render_template('page.html', group=group, page_name=page_name)
 
 
-@app.route('/create-sheet')
-def create_sheet():
-    return render_template('create-sheet.html')
-
-
 @app.route('/create-template')
 def create_template():
     return render_template('create-tempalate.html')
 
+@app.route('/admin/update-delete-comment')
+def update_delete_comment():
+    return render_template('comment.html')
+
 
 api.add_resource(Comment_Create, '/api/Comment')
 api.add_resource(Comment_Get, '/api/Comment/<group>/<page>/<date>')
-api.add_resource(Comment_Put, '/api/Comment/<cmtact>/<id>')
-api.add_resource(Comment_Delete, '/api/Comment/<id>')
+api.add_resource(Comment_Put, '/api/Comment/<_id>')
+api.add_resource(Comment_Delete, '/api/Comment/<_id>')
 
 
 api.add_resource(Sheet_Create, '/api/Sheet')

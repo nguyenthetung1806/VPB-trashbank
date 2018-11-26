@@ -7,7 +7,6 @@ $(document).ready(function () {
         type: 'get',
         success: function (response) {
             response = JSON.parse(response);
-            console.log(response);
             response.forEach(element => {
                 group_list.push(element.group)
             });
@@ -27,7 +26,6 @@ $(document).ready(function () {
         type: 'get',
         success: function (response) {
             response = JSON.parse(response);
-            console.log(response);
             response.forEach(element => {
                 group_date.push(element.date)
             });
@@ -55,10 +53,13 @@ $(document).ready(function () {
     function createSheet(formData) {
         axios.post(`/api/Sheet`, formData, { responseType: 'arraybuffer' }, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(response => {
-                console.log(response.data);
+                console.log(response);
                 alert('success')
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+                alert('Something was wrong !!! Please try again !!!')
+            });
     }
 
     $("#customFile").change(function () {
@@ -74,7 +75,6 @@ $(document).ready(function () {
         formData.append("date", $("select#date-selection option:selected").val());
         formData.append("sheet", $("#input-sheet").val());
         formData.append("data", $("#customFile")[0].files[0]);
-        console.log(formData)
         createSheet(formData)
     })
 
