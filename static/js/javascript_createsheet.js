@@ -51,10 +51,9 @@ $(document).ready(function () {
 
 
     function createSheet(formData) {
-        axios.post(`/api/Sheet`, formData, { responseType: 'arraybuffer' }, { headers: { 'Content-Type': 'multipart/form-data' } })
+        axios.post(`/api/Sheet`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(response => {
-                console.log(response);
-                alert('success')
+                alert(response.data)
             })
             .catch(err => {
                 console.log(err)

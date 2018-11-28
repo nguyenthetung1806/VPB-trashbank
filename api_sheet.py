@@ -35,9 +35,10 @@ class Sheet_Create(Resource):
                                 array=df_array
                                 )
             result.save()
+            res = "Success !!"
         else: 
-            raise ValueError
-        return Response(result)
+           res = 'Already Exist !!'
+        return Response(res)
 
 
 class Sheet_Get(Resource):
