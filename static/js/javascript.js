@@ -132,22 +132,48 @@ $(document).ready(function () {
         console.log('comment redering')
         if (element.comment != "") {
             $('#div-comments').append(`
-                <div class="col single-data-piece">
-                    <div class="comment"> ${element.comment} </div>
-                </div> `)
+            <div class="whole-piece">
+                <div class="row single-data-piece">
+                    <div class="col comment"> ${element.comment} </div>
+                </div> 
+                <div class="row">
+                    <div id="Action/${element._id.$oid}" class="col edit-btn"> Edit </div>
+                    <div id="${element._id.$oid}" class="col delete-btn"> Delete </div>
+                </div>
+            </div>
+                `)
         }
         if (element.action != "") {
             $('#div-actions').append(`
-                <div class="col single-data-piece">
+            <div class="whole-piece">
+                <div class="row single-data-piece">
                     <div class="Action"> ${element.action} </div>
-                </div> `)
+                </div> 
+                <div class="row">
+                    <div id="Comment/${element._id.$oid}" class="col edit-btn"> Edit </div>
+                    <div id="${element._id.$oid}" class="col delete-btn"> Delete </div>
+                </div>
+            </div>
+                `)
         }
     }
 
 
 
+    $(document).on('click', '.delete-btn', function (event) {
+        let id = $(this).attr('id')
+        console.log(id)
+        axios.delete(`/api/Comment/${id}`)
+            .then(response => {
+                $(this).parent('.row').parent('.whole-piece').remove();
+                alert("Comment Deleted !!")
+            })
+            .catch(err => console.log(err));
+    })
 
-
+    $(document).on('click', '.edit-btn', function (event) {
+        window.location.href = `/comment/edit/${$(this).attr('id')}`;
+    })
 
 
 

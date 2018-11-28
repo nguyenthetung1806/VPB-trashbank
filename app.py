@@ -12,7 +12,7 @@ from io import BytesIO
 from api_date import Date_Main, Date_Create, Date_GetAll
 from api_page import Page_Main, Page_Create, Page_GetAll
 from api_sheet import Sheet_Main, Sheet_Create, Sheet_Get, Sheet_Get_WithDate
-from api_comment import Comment_Main, Comment_Create, Comment_Get, Comment_Put, Comment_Delete
+from api_comment import Comment_Main, Comment_Create, Comment_Get, Comment_Put, Comment_Delete, Comment_GetOne
 
 app = Flask(__name__)
 mlab.connect()
@@ -56,15 +56,16 @@ def page(group, page_name):
 def create_template():
     return render_template('create-tempalate.html')
 
-@app.route('/admin/update-delete-comment')
-def update_delete_comment():
-    return render_template('comment.html')
+@app.route('/comment/edit/<config>/<_id>')
+def update_delete_comment(config, _id):
+    return render_template('edit_comment.html',config = config, _id = _id)
 
 
 api.add_resource(Comment_Create, '/api/Comment')
 api.add_resource(Comment_Get, '/api/Comment/<group>/<page>/<date>')
 api.add_resource(Comment_Put, '/api/Comment/<_id>')
 api.add_resource(Comment_Delete, '/api/Comment/<_id>')
+api.add_resource(Comment_GetOne, '/api/Comment_getOne/<_id>')
 
 
 api.add_resource(Sheet_Create, '/api/Sheet')

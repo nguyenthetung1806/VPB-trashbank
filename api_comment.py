@@ -35,8 +35,15 @@ class Comment_Get(Resource):
         return Response(comment)
 
 
+class Comment_GetOne(Resource):
+    def get(self, _id):
+        comment = Comment_Main.objects.with_id(_id)
+        comment = comment.to_json()
+        return Response(comment)
+
+
 class Comment_Delete(Resource):
-    def delete(self,_id):
+    def delete(self, _id):
         comment = Comment_Main.objects.with_id(_id)
         comment.delete()
         return Response('deleted')
