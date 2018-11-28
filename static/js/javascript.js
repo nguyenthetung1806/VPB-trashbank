@@ -137,7 +137,7 @@ $(document).ready(function () {
                     <div class="col comment"> ${element.comment} </div>
                 </div> 
                 <div class="row">
-                    <div id="Action/${element._id.$oid}" class="col edit-btn"> Edit </div>
+                    <div id="Comment/${element._id.$oid}" class="col edit-btn"> Edit </div>
                     <div id="${element._id.$oid}" class="col delete-btn"> Delete </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@ $(document).ready(function () {
                     <div class="Action"> ${element.action} </div>
                 </div> 
                 <div class="row">
-                    <div id="Comment/${element._id.$oid}" class="col edit-btn"> Edit </div>
+                    <div id="Action/${element._id.$oid}" class="col edit-btn"> Edit </div>
                     <div id="${element._id.$oid}" class="col delete-btn"> Delete </div>
                 </div>
             </div>
