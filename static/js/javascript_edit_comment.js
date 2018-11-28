@@ -11,7 +11,8 @@ $(document).ready(function () {
         .catch(err => console.log(err))
 
     $(document).on('click', '#edit-content', function (event) {
-        $(`#config`).val().toLowerCase() === "comment"
+        console.log($(`#config`).text())
+        $(`#config`).text().toLowerCase() == "comment"
             ? editData = { comment: $('.fr-element.fr-view').html(), action: "" }
             : editData = { action: $('.fr-element.fr-view').html(), comment: "" }
         console.log(editData)
