@@ -72,10 +72,22 @@ $(document).ready(function () {
     }
 
     function renderArray(array, hidden) {
-        let thead = array.array[0].map(e => `<th> ${e} </th>`);
+        let renderArray = array.array
+        let thead = renderArray[0].map(e => `<th> ${e} </th>`);
         let tbody = []
-        for (let i = 1; i < array.array.length; i++) {
-            add = array.array[i].map(e => `<td class="${array.page} ${i}"> ${e} </td>`);
+        for (let i = 1; i < renderArray.length; i++) {
+            add = renderArray[i].map((e, index) => {
+                let cellValue = e;
+                if (parseFloat(e)) {
+                    if (renderArray[0][index].includes('%')) {
+                        cellValue = Math.round(parseFloat(e * 100)) + " %"
+                    } else {
+                        cellValue = Math.round(parseFloat(e))
+                        cellValue = cellValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+                }
+                return `<td row="${renderArray[i][0]}" column="${renderArray[0][index]}" class="${array.page} ${i}"> ${cellValue} </td>`
+            });
             tbody.push(add.join(""));
         }
         tbody = tbody.map(e => `<tr class="${array.page} ${tbody.indexOf(e)}"> ${e} </tr>`)

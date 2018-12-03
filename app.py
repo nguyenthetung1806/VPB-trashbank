@@ -46,6 +46,10 @@ def admin_createdate():
 def admin_createsheet():
     return render_template('create_sheet.html')
 
+@app.route('/admin/create-template')
+def admin_createtemplate():
+    return render_template('create_template.html')
+
 
 @app.route('/<group>/<page_name>/')
 def page(group, page_name):

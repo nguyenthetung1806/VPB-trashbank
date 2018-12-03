@@ -1,53 +1,175 @@
-.container {
-        height: 100vh;
+*{
+        box-sizing: border-box;
 }
+
+body{
+        font-family: 'Lato', sans-serif;
+        background-color: #eeeeee;
+}
+.container{
+        height: 100%;
+}
+/* Format row-info */
+.row-info{
+        background-color: #f7ce3e;
+        margin: 0;
+}
+.row-info .col{
+        padding: 8px;
+        font-size: 20px;
+}
+
+#group{
+        font-weight: bold;
+        display:block;
+}
+
+#page_name{
+        font-weight: bold;
+        display:block;
+        text-align: center;
+}  
+
+/* format row-option*/
+.option{
+        background-color: #1A2930;
+        padding-top: 5px;
+}
+
+.form-group label{
+        font-weight: bold;
+        font-size: 16px;
+        color:white;
+}
+
 .row_upper{
         height: 70%;
 }
-.row_under{
-        height: 30%;
-}
+
+/* format table*/
 .div__rowupper_left {
-        background-color: red;
         height: 100%;
+        padding: 0%;
 }
+
+.table{
+        margin: 0;
+        background-color: #c5c1c0;
+        font-size: 14px;
+        border:2px solid #1A2930;
+        table-layout: fixed;
+}
+
+.hidden {
+        display: none;
+}
+
+th{
+        font-size: 14px;
+        background-color:#f7ce3e;
+        margin: 0;
+        padding: 0;
+}
+
+th, td {
+        border-bottom: 1.5px dotted #0A1612;
+    }
+
+th:nth-child(1), td:nth-child(1){
+        background-color: #0A1612;
+        color: white;
+        font-size: 14px;
+        width: 15%;
+}
+
+/*format action and comment*/
 .div__rowupper_right {
-        background-color: blue;
         height: 100%;
         padding: 0px;
 }
 .comments_and_actions {
         width: 100%;
         height: 100%;
-        /* background-color: coral; */
-}
-.div__rowunder_left {
-        background-color: yellow;
-        height: 100%;
-}
-.div__rowunder_mid {
-        background-color: green;
-        height: 100%;
-}
-.div__rowunder_right {
-        background-color: pink;
-        height: 100%;
-}
-
-.table {
-        background-color: aqua
-}
-.hidden {
-        display: none;
+        font-size: 14px;
 }
 
 .comments {
-        background-color: aqua;
         height: 50%;
         overflow: auto;
+        border-top: 2px solid #1A2930;
+        border-right: 2px solid #1A2930;
+        border-bottom: 2px solid #1A2930;
+        background-color: #c5c1c0;
 }
+
+.comments > .col{
+        border-bottom: 2px solid #1A2930;
+        background-color:#f7ce3e;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0px 5px;
+}
+
+#div-comments{
+        background-color: #c5c1c0;
+}
+
 .actions {
-        background-color:pink;
         height: 50%;
         overflow: auto;
+        border-bottom: 2px solid #1A2930;
+        border-right: 2px solid #1A2930;
+        border-left: 2px solid #1A2930;
+        background-color: #c5c1c0;
+}
+
+.actions > .col{
+        border-bottom: 2px solid #1A2930;
+        background-color:#f7ce3e;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0px 5px;
+}
+
+#div-actions{
+        background-color: #c5c1c0;
+}
+/* format post comment*/
+.row_under{
+        height: 30%;
+}
+
+.div__rowunder_mid {
+        background-color: #f7ce3e;
+        height: 100%;
+}
+
+.row > .form-group{
+        padding:10px;
+        margin: 0;
+        border: solid black 1px 1px 0px 1px;
+}
+
+div > .fr-desktop{
+        border:solid black 1px;
+        margin: 0;
+}
+
+div > .fr-wrapper{
+        height: 100%;
+}
+
+#post-content{
+        background-color: #0A1612;
+        color:white;
+        font-weight: bold;
+        font-size: 16px;
+}
+
+
+[row="Net interest income (NII)"] {
+        background-color: red;
+}
+[row=""] {
+        background-color: royalblue;
 }
