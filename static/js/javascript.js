@@ -55,6 +55,7 @@ $(document).ready(function () {
                 getComment()
                 console.log(response)
             })
+            .catch(err => console.log(err))
 
 
     })
@@ -103,6 +104,7 @@ $(document).ready(function () {
                 </tbody>
             </table >
         `)
+        FormatCell();
     }
 
     function createComment(content) {
@@ -186,6 +188,28 @@ $(document).ready(function () {
     $(document).on('click', '.edit-btn', function (event) {
         window.location.href = `/comment/edit/${$(this).attr('id')}`;
     })
+
+
+
+
+
+    // format cell condition
+    // Write format functions inside: FormatCell () {  ....functions...  }
+    function FormatCell() {
+
+        // Example
+        $('td').each(function () {
+            console.log(parseFloat($(this).text()))
+            if (parseFloat($(this).text()) < 0) {
+                $(this).css({ "color": "red" })
+                console.log('s')
+            }
+        });
+        // Example End
+
+
+    }
+
 
 
 
