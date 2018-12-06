@@ -37,6 +37,11 @@ def admin_createpage():
     return render_template('create_page.html')
 
 
+@app.route('/<group>/<page_name>/')
+def page(group, page_name):
+    return render_template('page.html', group=group, page_name=page_name)
+
+
 @app.route('/admin/create-date')
 def admin_createdate():
     return render_template('create_date.html')
@@ -46,23 +51,20 @@ def admin_createdate():
 def admin_createsheet():
     return render_template('create_sheet.html')
 
+
 @app.route('/admin/create-template')
 def admin_createtemplate():
     return render_template('create_template.html')
-
-
-@app.route('/<group>/<page_name>/')
-def page(group, page_name):
-    return render_template('page.html', group=group, page_name=page_name)
 
 
 @app.route('/create-template')
 def create_template():
     return render_template('create-tempalate.html')
 
+
 @app.route('/comment/edit/<config>/<_id>')
 def update_delete_comment(config, _id):
-    return render_template('edit_comment.html',config = config, _id = _id)
+    return render_template('edit_comment.html', config=config, _id=_id)
 
 
 api.add_resource(Comment_Create, '/api/Comment')

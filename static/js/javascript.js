@@ -80,7 +80,7 @@ $(document).ready(function () {
             add = renderArray[i].map((e, index) => {
                 let cellValue = e;
                 if (parseFloat(e)) {
-                    if (renderArray[0][index].includes('%')) {
+                    if (renderArray[0][index].includes('%') || renderArray[i][0].includes('%')) {
                         cellValue = Math.round(parseFloat(e * 100)) + " %"
                     } else {
                         cellValue = Math.round(parseFloat(e))
@@ -138,12 +138,12 @@ $(document).ready(function () {
         console.log(content)
         console.log('create')
         createComment(content)
+        $('.fr-element.fr-view').empty();
     })
 
 
 
     function renderComment(element) {
-        console.log('comment redering')
         if (element.comment != "") {
             $('#div-comments').append(`
             <div class="whole-piece">
@@ -173,17 +173,45 @@ $(document).ready(function () {
     }
 
 
-
+    // create modal for delete button
     $(document).on('click', '.delete-btn', function (event) {
         let id = $(this).attr('id')
-        console.log(id)
+        $('#modal').append(`    
+        <div class="modal fade show" style ="display: block; padding-right: 16px;">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="close-modal" aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ${ $(this).parent('.row').siblings('.row.single-data-piece').html()}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close-modal btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button cmt-act-id="${id}" type="button" class="modal-level delete btn btn-danger">Delete Comment</button>
+                </div>
+            </div>
+            </div>
+        </div>`)
+    })
+
+    //  actually remove the content
+    $(document).on('click', '.close-modal', function (event) {
+        $('#modal').empty();
+    });
+
+    $(document).on('click', '.modal-level.delete', function (event) {
+        let id = $(this).attr('cmt-act-id')
         axios.delete(`/api/Comment/${id}`)
             .then(response => {
-                $(this).parent('.row').parent('.whole-piece').remove();
-                alert("Comment Deleted !!")
+                $('#modal').empty();
+                $(`#${id}`).parent('.row').parent('.whole-piece').remove();
             })
             .catch(err => console.log(err));
-    })
+    });
 
     $(document).on('click', '.edit-btn', function (event) {
         window.location.href = `/comment/edit/${$(this).attr('id')}`;
@@ -199,10 +227,8 @@ $(document).ready(function () {
 
         // Example
         $('td').each(function () {
-            console.log(parseFloat($(this).text()))
             if (parseFloat($(this).text()) < 0) {
                 $(this).css({ "color": "red" })
-                console.log('s')
             }
         });
         // Example End
